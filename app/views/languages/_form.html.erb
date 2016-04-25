@@ -1,0 +1,20 @@
+<%= form_for(@languages) do |f| %>
+  <div class="selector">
+    <%= f.collection_select(:language, :name, @languages, :language, :name) %>
+  </div>
+  <div class="selector">
+    <%= f.collection_select(:language, :name, @languages, :language, :name) %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :input %><br>
+    <%= f.text_field :input %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

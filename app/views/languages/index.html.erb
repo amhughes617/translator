@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead>
+    <tr>
+      <td>Input Language</td>
+      <td></td>
+      <td>Output Language</td>
+    </tr>
+  </thead>
+</table>
+<%= form_tag({controller: "languages", action: "translate"}, method: "post") do %>
+    <%= collection_select(:language, :language1, @languages, :language, :name) %>
+    <%= collection_select(:language, :language2, @languages, :language, :name) %>
+  <br>
+    <%= text_field_tag(:input) %>
+    <%= submit_tag ("Translate") %>
+<% end %>
+<br>
+<p><%= $output %></p>

@@ -23,6 +23,7 @@ class LanguagesController < ApplicationController
 
   def translate
     input = params["input"]
+    input = input.tr(" ", "+")
     language = params["language"]
     language1 = language["language1"]
     language2 = language["language2"]

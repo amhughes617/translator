@@ -6,7 +6,7 @@ class LanguagesController < ApplicationController
   # GET /languages.json
   def index
     if Language.count == 0
-      url = URI.parse("https://www.googleapis.com/language/translate/v2/languages?target=en&key=#{ENV.fetch('KEY')}")
+      url = URI.parse("https://www.googleapis.com/language/translate/v2/languages?target=en&key=#{ENV["KEY"]}")
       req = Net::HTTP::Get.new(url.request_uri)
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = (url.scheme == "https")
@@ -27,7 +27,7 @@ class LanguagesController < ApplicationController
     language = params["language"]
     language1 = language["language1"]
     language2 = language["language2"]
-    url = URI.parse("https://www.googleapis.com/language/translate/v2?q=#{input}&target=#{language2}&source=#{language1}&key=#{ENV.fetch('KEY')}")
+    url = URI.parse("https://www.googleapis.com/language/translate/v2?q=#{input}&target=#{language2}&source=#{language1}&key=#{ENV["KEY"]}")
     req = Net::HTTP::Get.new(url.request_uri)
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = (url.scheme == "https")
@@ -37,6 +37,8 @@ class LanguagesController < ApplicationController
     $output = response[0][:translatedText]
     redirect_to "/"
   end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_language

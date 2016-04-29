@@ -1,7 +1,6 @@
 require 'net/http'
 require 'byebug'
 class LanguagesController < ApplicationController
-
   # GET /languages
   # GET /languages.json
   def index
@@ -34,17 +33,13 @@ class LanguagesController < ApplicationController
     response = http.request(req)
     response = (JSON.parse(response.body)).deep_symbolize_keys
     response = response[:data][:translations]
-    $output = response[0][:translatedText]
-    redirect_to "/"
+    @output = response[0][:translatedText]
+    @languages = Language.all
+    render action: 'index'
   end
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_language
-      @language = Language.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def language_params
       params.require(:language).permit(:language, :name)

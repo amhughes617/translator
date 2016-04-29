@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<h1>Translator</h1>
 <table>
   <thead>
     <tr>
@@ -12,16 +12,15 @@
     <%= form_tag({controller: "languages", action: "translate"}, method: "post") do %>
     <tr>
       <td><%= collection_select(:language, :language1, @languages, :language, :name) %></td>
-      <td>to:</td>
+      <td align="center">to:</td>
       <td><%= collection_select(:language, :language2, @languages, :language, :name) %></td>
     </tr>
+    <tr></tr>
     <tr>
-      <td><%= text_field_tag(:input) %></td>
+      <td><%= text_field_tag :input, params[:input] %></td>
       <td><%= submit_tag ("Translate") %></td>
+      <td align="center"><%= @output %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-<p><%= $output %></p>
